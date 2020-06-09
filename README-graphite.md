@@ -55,7 +55,7 @@ SECRET_KEY = 'somelonganduniquesecretstring'
 TIME_ZONE = 'America/New_York'
 ```
 
-Also, the database setup routine in the next section required that the Django INSTALLED_APPS setting was populated. This setting is not initiailized in the `global_settings.py` for the python3-django package, so we also initialize it in `local_settings.py`.
+Also, the database setup routine in the next section required that the Django INSTALLED_APPS setting was populated. This setting is not initiailized in the `global_settings.py` for the python3-django package, so we initialize it in `local_settings.py`.
 
 Note: python3-django uses v2.2 of Django. It may be that the graphite-web package has not caught up fully to this version of Django, and so we must manually initialize this stting.
 ```
@@ -82,7 +82,7 @@ INSTALLED_APPS = [
 
 **Django database**
 
-Initializes the graphite database:
+Initialize the Django graphite database:
 
 ```
 $ sudo su -s /bin/bash _graphite -c 'graphite-manage migrate'
@@ -121,6 +121,7 @@ Running migrations:
 
 **Apache**
 
+Set up the Graphite web UI in Apache although really we only need the web UI as a web service.
 ```
 $ sudo cp /usr/share/graphite-web/apache2-graphite.conf /etc/apache2/sites-available
 
@@ -161,16 +162,6 @@ In `/var/log/carbon/console.log`, you may see lines like below. Since `storage-a
 ```
 01/01/2020 12:59:37 :: /etc/carbon/storage-aggregation.conf not found or wrong perms, ignoring.
 ```
-
-In `/var/log/carbon/tagdb.log`, you may see lines like below. The errors relate to graphite's new tagging capability. I think the errors are just an artifact from installation. However, you may wish to turn off tags in `carbon.conf` with `ENABLE_TAGS = False`.
-
-```
-01/01/2020 13:53:59 :: Error tagging carbon.agents.localhost-a.committedPoints: Error response 404 from http://127.0.0.1:80/tags/tagMultiSeries
-01/01/2020 13:59:59 :: Error tagging carbon.agents.localhost-a.metricsReceived: Error response 404 from http://127.0.0.1:80/tags/tagMultiSeries
-01/01/2020 14:04:59 :: Error tagging carbon.agents.localhost-a.pointsPerUpdate: Error response 404 from http://127.0.0.1:80/tags/tagMultiSeries
-01/01/2020 14:10:59 :: Error tagging carbon.agents.localhost-a.cache.overflow: Error response 404 from http://127.0.0.1:80/tags/tagMultiSeries
-```
-
 
 Users:
 
