@@ -41,8 +41,8 @@ Configuration
 Configure interval and retention. Below is a good starting point. Entries are scanned in order in this file, so must insert *before* a matching entry with a generic pattern!
 
 ```
-[temp]
-pattern = ^temp\.
+[device]
+pattern = ^device\.
 retentions = 60s:90d
 ```
 
