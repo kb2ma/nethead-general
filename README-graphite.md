@@ -173,6 +173,16 @@ Users:
 
 * _graphite
 
+### Disabling
+
+To disable Graphite at startup:
+
+```
+sudo systemctl disable carbon-cache.service
+```
+
+Similarly, use the `enable` command to re-enable it at startup.
+
 Metric Names
 ------------
 
