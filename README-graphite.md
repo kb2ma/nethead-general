@@ -127,7 +127,13 @@ $ sudo cp /usr/share/graphite-web/apache2-graphite.conf /etc/apache2/sites-avail
 
 ```
 
-Finally, disable the default Apache site and enable the Graphite site:
+Note: By default, the Graphite web UI runs on port 80. To run it on a different port, update the conf file above. Also, add an entry to the Apache `ports.conf` file. For example to listen on port 8089:
+
+```
+Listen 8089
+```
+
+Finally, disable the default Apache site so it won't listen on port 80, and enable the Graphite site:
 ```
 $ sudo a2dissite 000-default
 $ sudo a2ensite apache2-graphite
